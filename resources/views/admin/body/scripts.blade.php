@@ -32,3 +32,41 @@
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('backend/dist/js/pages/dashboard.js') }}"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('backend/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            "language": {
+                "search": "Search:",
+                "lengthMenu": "Show _MENU_ entries",
+                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                "infoEmpty": " Showing 0 to 0 of 0 entries",
+                "infoFiltered": "(filtered from _MAX_ total entries)",
+                "paginate": {
+                    "first": "First",
+                    "last": "Last",
+                    "next": "Next",
+                    "previous": "Previous"
+                }
+            }
+        }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+</script>

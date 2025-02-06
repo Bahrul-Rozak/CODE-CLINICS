@@ -88,6 +88,11 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                            <a href="{{ route('doctor.index') }}" class="nav-link">
+                                <p>👨‍⚕️ Doctor </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="pages/mailbox/mailbox.html" class="nav-link">
                                 <p>📅 Doctor Schedule</p>
@@ -131,6 +136,13 @@
                     <a href="pages/gallery.html" class="nav-link">
                         <p>
                             💻 Account
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/gallery.html" class="nav-link">
+                        <p>
+                            ⭕ Logout
                         </p>
                     </a>
                 </li>
