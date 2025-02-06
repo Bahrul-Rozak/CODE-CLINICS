@@ -1,0 +1,29 @@
+body{
+    background-color: white;
+}
+
+.button-primary{
+    background-color: #1A76D1;
+    width: 107px;
+    margin: 7px;
+    color:white;
+}
+
+.button-secondary{
+    background-color: rgb(231, 154, 12);
+    width: 107px;
+    margin: 7px;
+    color:white;
+}
+
+span{
+    color: #1A76D1;
+}
+
+.header-title{
+    margin-top: 15rem;
+}
+
+.about-us, .how-works, .banner{
+    margin-top: 10rem;
+}
