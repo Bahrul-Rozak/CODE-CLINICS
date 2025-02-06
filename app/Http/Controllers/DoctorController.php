@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clinic;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class DoctorController extends Controller
 
     public function create()
     {
-        return view('admin.backend.doctor.create');
+        $clinics = Clinic::all(); 
+        return view('admin.backend.doctor.create', compact('clinics'));
     }
 
     public function store(Request $request)
@@ -25,29 +27,21 @@ class DoctorController extends Controller
         // Testing dulu lah..
         // dd($request->all());
 
-        // Validasi input
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
             'phone' => 'required|string|max:15',
             'practice_schedule' => 'required|string|max:255',
+            'clinic_id' => 'required|exists:clinics,id', 
         ]);
 
-        // Jika validasi gagal, kembalikan respons dengan error
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        // Simpan data dengan clinic_id sementara
-        $doctor = new Doctor();
-        $doctor->name = $request->input('name');
-        $doctor->address = $request->input('address');
-        $doctor->phone = $request->input('phone');
-        $doctor->practice_schedule = $request->input('practice_schedule');
-        $doctor->clinic_id = 0; // Atau null, jika Anda ingin menggunakan null
-        $doctor->save();
+        Doctor::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'practice_schedule' => $request->practice_schedule,
+            'clinic_id' => $request->clinic_id, 
+        ]);
 
         return redirect()->route('doctor.index')->with('message', 'Doctor Created Successfully');
     }
@@ -61,7 +55,8 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor_data = Doctor::find($id);
-        return view('admin.backend.doctor.edit', compact('doctor_data'));
+        $clinics = Clinic::all(); 
+        return view('admin.backend.doctor.edit', compact('doctor_data', 'clinics'));
     }
 
     public function update(Request $request, $id)
@@ -72,6 +67,7 @@ class DoctorController extends Controller
             'address' => 'nullable|string|max:255',
             'phone' => 'required|string|max:15',
             'practice_schedule' => 'required|string|max:255',
+            'clinic_id' => 'required|exists:clinics,id',
         ]);
 
         $doctor = Doctor::findOrFail($id);

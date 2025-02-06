@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
 // Admin
 Route::resource('doctor', DoctorController::class);
+Route::resource('clinic', ClinicController::class);
 
 // Route::middleware(['auth', 'admin'])->group(function () {
 //     Route::resource('doctor', DoctorController::class);

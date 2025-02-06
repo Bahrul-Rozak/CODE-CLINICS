@@ -17,11 +17,12 @@
         <div class="form-group">
             <label for="clinics">Clinics</label>
             <select class="form-control" id="clinics" name="clinic_id">
-                <option>Select clinics</option>
-                <option>Cardiology</option>
-                <option>Dermatology</option>
-                <option>Pediatrics</option>
-                <option>Neurology</option>
+                @foreach ($clinics as $clinic)
+                <option value="{{ $clinic->id }}"
+                    @if ($doctor_data->clinic_id == $clinic->id) selected @endif>
+                    {{ $clinic->name }}
+                </option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">

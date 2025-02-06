@@ -36,7 +36,7 @@
                 <tr>
                     <td>{{ $doctors->name }}</td>
                     <td>{{ $doctors->address }}</td>
-                    <td>{{ $doctors->clinic_id }}</td>
+                    <td>{{ $doctors->clinic->name }}</td>
                     <td>{{ $doctors->phone }}</td>
                     <td>{{ $doctors->practice_schedule }}</td>
                     <td>
