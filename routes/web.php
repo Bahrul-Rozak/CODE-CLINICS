@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
 // Admin
 Route::resource('doctor', DoctorController::class);
 Route::resource('clinic', ClinicController::class);
+Route::resource('employee', EmployeeController::class);
 
 // Route::middleware(['auth', 'admin'])->group(function () {
 //     Route::resource('doctor', DoctorController::class);

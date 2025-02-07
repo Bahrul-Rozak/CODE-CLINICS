@@ -106,7 +106,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="{{ route('employee.index') }}" class="nav-link">
                         <p>
                             💼 Employee
                         </p>
