@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/compose.html" class="nav-link">
+                            <a href="{{ route('medication-types.index') }}" class="nav-link">
                                 <p>🩺 Medications Type</p>
                             </a>
                         </li>
