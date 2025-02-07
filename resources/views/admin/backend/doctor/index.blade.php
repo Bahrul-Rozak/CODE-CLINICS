@@ -41,7 +41,12 @@
                     <td>{{ $doctors->practice_schedule }}</td>
                     <td>
                         <a href="{{ route('doctor.edit', $doctors->id) }}" class="btn btn-info">Edit</a>
-                        <a href="{{ route('doctor.destroy', $doctors->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a>
+                        <!-- <a href="{{ route('doctor.destroy', $doctors->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a> -->
+                        <form action="{{ route('doctor.destroy', $doctors->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
