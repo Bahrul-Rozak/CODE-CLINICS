@@ -26,11 +26,11 @@
             <input type="text" class="form-control" id="phone" placeholder="Active phone number" name="phone">
         </div>
         <div class="form-group">
-            <label for="practice_schedule">Practice Schedule</label>
-            <select class="form-control" id="practice_schedule" name="practice_schedule">
-                <option>Select schedule...</option>
-                <option>Monday - Friday</option>
-                <option>Saturday - Sunday</option>
+            <label for="schedule_id">Practice Schedule</label>
+            <select class="form-control" id="schedule_id" name="schedule_id">
+            @foreach ($schedules as $schedule)
+                <option value="{{ $schedule->id }}">{{ $schedule->practice_schedule }}</option>
+                @endforeach
             </select>
         </div>
         <button type="submit" class="btn btn-success">Add</button>

@@ -31,10 +31,13 @@
         </div>
         <div class="form-group">
             <label for="practice_schedule">Practice Schedule</label>
-            <select class="form-control" id="practice_schedule" name="practice_schedule">
-                <option>Select schedule...</option>
-                <option>Monday - Friday</option>
-                <option>Saturday - Sunday</option>
+            <select class="form-control" id="schedule_id" name="schedule_id">
+                @foreach ($schedules as $schedule)
+                <option value="{{ $schedule->id }}"
+                    @if ($doctor_data->schedule_id == $schedule->id) selected @endif>
+                    {{ $schedule->practice_schedule }}
+                </option>
+                @endforeach
             </select>
         </div>
         <button type="submit" class="btn btn-success">Update</button>

@@ -23,6 +23,7 @@
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>Clinics</th>
@@ -34,11 +35,12 @@
             <tbody>
                 @foreach ($doctor_data as $doctors )
                 <tr>
+                    <td>{{ $loop->iteration  }}</td>
                     <td>{{ $doctors->name }}</td>
                     <td>{{ $doctors->address }}</td>
                     <td>{{ $doctors->clinic->name }}</td>
                     <td>{{ $doctors->phone }}</td>
-                    <td>{{ $doctors->practice_schedule }}</td>
+                    <td>{{ $doctors->schedule->practice_schedule }}</td>
                     <td>
                         <a href="{{ route('doctor.edit', $doctors->id) }}" class="btn btn-info">Edit</a>
                         <!-- <a href="{{ route('doctor.destroy', $doctors->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this doctor?')">Delete</a> -->

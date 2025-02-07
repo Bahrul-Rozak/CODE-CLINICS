@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->integer('clinic_id')->references('id')->on('clinics');
             $table->string('phone');
-            $table->string('practice_schedule');
+            $table->integer('schedule_id')->references('id')->on('schedules');
             $table->timestamps();
         });
     }

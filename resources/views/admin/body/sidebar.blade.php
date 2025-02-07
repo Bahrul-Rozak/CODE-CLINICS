@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
+                            <a href="{{ route('schedule.index') }}" class="nav-link">
                                 <p>📅 Doctor Schedule</p>
                             </a>
                         </li>

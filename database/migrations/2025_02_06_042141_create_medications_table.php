@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('medication_code')->nullable();
             $table->integer('stock')->nullable();
-            $table->integer('type_id')->references('id')->on('medications_types')->nullable()->constrained();
+            $table->integer('type_id')->references('id')->on('medication_types')->nullable()->constrained();
             $table->string('name');
             $table->string('dosage')->nullable();
             $table->string('price')->nullable();

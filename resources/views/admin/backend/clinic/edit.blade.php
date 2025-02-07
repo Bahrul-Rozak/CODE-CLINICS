@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <h2>Add New Clinic</h2>
+    <h2>Edit Clinic</h2>
     <form action="{{ route('clinic.update', $clinic_data->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
