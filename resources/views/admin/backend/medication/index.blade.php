@@ -24,14 +24,14 @@
                 <tr>
                     <th style="width: 5%;">No</th>
                     <th style="width: 10%;">Medication Code</th>
-                    <th style="width: 10%;">Stock</th>
+                    <th style="width: 5%;">Stock</th>
                     <th style="width: 15%;">Name</th>
-                    <th style="width: 10%;">Dosage</th>
+                    <th style="width: 5%;">Dosage</th>
                     <th style="width: 10%; text-align:right;">Price</th>
                     <th style="width: 10%;">Created on</th>
                     <th style="width: 10%;">Expired on</th>
                     <th style="width: 10%;">Photo</th>
-                    <th style="width: 20%;">Actions</th>
+                    <th style="width: 25%;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +41,7 @@
                     <td>{{ $medications->medication_code }}</td>
                     <td>{{ $medications->stock }}</td>
                     <td>{{ $medications->name }}</td>
-                    <td>{{ $medications->dosage }}</td>
+                    <td>{{ $medications->dosage }} mg</td>
                     <td style="text-align: right;">Rp. {{ $medications->price }}</td>
                     <td>{{ $medications->created_at->format('Y-m-d')}}</td>
                     <td>{{$medications->expiration_date}}</td>
@@ -50,6 +50,7 @@
                     </td>
                     <td>
                         <a href="{{ route('medication.edit', $medications->id) }}" class="btn btn-info">Edit</a>
+                        <a href="{{ route('medication.edit_stock', $medications->id) }}" class="btn btn-warning">Change Stock</a>
                         <form action="{{ route('medication.destroy', $medications->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

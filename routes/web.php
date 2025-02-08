@@ -33,6 +33,11 @@ Route::resource('employee', EmployeeController::class);
 Route::resource('schedule', ScheduleController::class);
 Route::resource('medication-types', MedicationTypeController::class);
 Route::resource('medication', MedicationController::class);
+Route::get('/medication/{id}/edit-stock', [MedicationController::class, 'editstock'])->name('medication.edit_stock');
+Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstock'])->name('medication.add_stock');
+
+
+
 
 // Route::middleware(['auth', 'admin'])->group(function () {
 //     Route::resource('doctor', DoctorController::class);

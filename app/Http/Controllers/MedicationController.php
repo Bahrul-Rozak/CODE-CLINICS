@@ -80,9 +80,10 @@ class MedicationController extends Controller
         return view('admin.backend.medication.edit', compact('medication_data', 'medication_types'));
     }
 
-    public function update(Request $request, $id){
-         // Validasi data masukan
-         $validated = $request->validate([
+    public function update(Request $request, $id)
+    {
+        // Validasi data masukan
+        $validated = $request->validate([
             'medication_code' => 'nullable|string|max:255',
             'stock' => 'required|integer|min:0',
             'type_id' => 'nullable|exists:medications_type,id',
@@ -108,5 +109,28 @@ class MedicationController extends Controller
         return redirect()->route('medication.index')->with('success', 'Medication deleted successfully');
     }
 
+    // Stock Obat
+    public function editstock($id)
+    {
+        $medication_data = Medication::findOrFail($id);
+        return view('admin.backend.medication.edit-stock', compact('medication_data'));
+    }
 
+    public function addstock(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'add_stock' => 'required|integer|min:1'
+        ]);
+
+        $medication = Medication::findOrFail($id);
+        $medication->stock += $validated['add_stock'];
+
+        if ($request->expiration_date) {
+            $medication->expiration_date = $request->expiration_date;
+        }
+
+        $medication->save();
+
+        return redirect()->route('medication.index')->with('success', 'Stok terupdate!');
+    }
 }
