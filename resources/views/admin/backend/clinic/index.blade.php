@@ -22,6 +22,7 @@
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
+                    <th style="width: 5%;">No</th>
                     <th>Name</th>
                     <th style="width: 10%;">Actions</th>
                 </tr>
@@ -29,6 +30,7 @@
             <tbody>
                 @foreach($clinic_data as $clinics)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{$clinics->name}}</td>
                     <td>
                         <a href="{{ route('clinic.edit', $clinics->id) }}" class="btn btn-info">Edit</a>

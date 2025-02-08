@@ -11,7 +11,7 @@
             <input type="text" class="form-control" id="practice_schedule" placeholder="Enter Practice Schedule" name="practice_schedule"
             value="{{old('name', $schedule_data->practice_schedule)}}">
         </div>
-        <button type="submit" class="btn btn-success">Add</button>
+        <button type="submit" class="btn btn-success">Update</button>
         <a href="{{ route('schedule.index') }}" class="btn btn-warning">Back</a>
     </form>
 </div>

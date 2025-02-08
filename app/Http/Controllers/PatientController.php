@@ -10,8 +10,8 @@ class PatientController extends Controller
 {
     public function store(Request $request)
     {
-        // Validasi data masukan
-        $validator = Validator::make($request->all(), [
+        // Validasi data masukan menggunakan validate() dari Laravel
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'nullable|string|max:255',
             'birth_date' => 'required|date',
@@ -23,27 +23,10 @@ class PatientController extends Controller
             'national_id' => 'nullable|string|max:15',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Validation failed',
-                'errors' => $validator->errors(),
-            ], 422);
-        }
+        // Membuat data patient setelah validasi berhasil
+        $patient = Patient::create($validatedData);
 
-        $patient = Patient::create([
-            'patient_code' => $request->input('patient_code'),
-            'name' => $request->input('name'),
-            'address' => $request->input('address'),
-            'birth_date' => $request->input('birth_date'),
-            'gender' => $request->input('gender'),
-            'phone' => $request->input('phone'),
-            'religion' => $request->input('religion'),
-            'education' => $request->input('education'),
-            'occupation' => $request->input('occupation'),
-            'national_id' => $request->input('national_id'),
-        ]);
-
+        // Mengembalikan respons JSON setelah data berhasil disimpan
         return response()->json([
             'status' => 'success',
             'message' => 'Patient created successfully',

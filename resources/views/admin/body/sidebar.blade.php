@@ -121,7 +121,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/mailbox/mailbox.html" class="nav-link">
+                            <a href="{{ route('medication.index') }}" class="nav-link">
                                 <p>💊 Medications</p>
                             </a>
                         </li>
