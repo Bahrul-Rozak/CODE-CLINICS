@@ -134,7 +134,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('patient.store') }}" method="post">
+                    <form action="" method="post">
                         @csrf
                         <div class="mb-3 row">
                             <label for="name" class="col-sm-2 col-form-label">Name</label>

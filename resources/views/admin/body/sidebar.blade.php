@@ -73,7 +73,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="{{ route('patient.index') }}" class="nav-link">
                         <p>
                             😷 Patient
                         </p>

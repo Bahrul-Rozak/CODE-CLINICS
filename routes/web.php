@@ -18,7 +18,6 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('/patients', [PatientController::class, 'store'])->name('patient.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,6 +34,7 @@ Route::resource('medication-types', MedicationTypeController::class);
 Route::resource('medication', MedicationController::class);
 Route::get('/medication/{id}/edit-stock', [MedicationController::class, 'editstock'])->name('medication.edit_stock');
 Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstock'])->name('medication.add_stock');
+Route::resource('patient', PatientController::class);
 
 
 
