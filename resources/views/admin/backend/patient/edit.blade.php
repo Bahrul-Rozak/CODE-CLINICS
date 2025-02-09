@@ -58,7 +58,11 @@
 
                 <div class="form-group">
                     <label for="education">Education</label>
-                    <input type="text" class="form-control" id="education" placeholder="-" name="education" value="{{old('education', $patient_data->education)}}">
+                    <select class="form-control" id="education" name="education">
+                        @foreach(['sd', 'smp', 'sma', 'diploma', 'sarjana', 'magister', 'doktor'] as $education)
+                        <option value="{{ $education }}" @if($patient_data->education==$education) selected @endif>{{$education}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="employment">Employment</label>

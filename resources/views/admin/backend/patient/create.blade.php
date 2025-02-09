@@ -51,10 +51,18 @@
                         <option value="konghucu">Konghucu</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="education">Education</label>
-                    <input type="text" class="form-control" id="education" placeholder="-" name="education">
+                    <select class="form-control" id="education" name="education">
+                        <option selected>Select Education Level</option>
+                        <option value="sd">SD</option>
+                        <option value="smp">SMP</option>
+                        <option value="sma">SMA</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="sarjana">Sarjana (S1)</option>
+                        <option value="magister">Magister (S2)</option>
+                        <option value="doktor">Doktor (S3)</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="employment">Employment</label>
