@@ -7,6 +7,7 @@ use App\Http\Controllers\MedicationController;
 use App\Http\Controllers\MedicationTypeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::resource('medication', MedicationController::class);
 Route::get('/medication/{id}/edit-stock', [MedicationController::class, 'editstock'])->name('medication.edit_stock');
 Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstock'])->name('medication.add_stock');
 Route::resource('patient', PatientController::class);
+Route::resource('patient-register', RegisterController::class);
+Route::post('/patient-register/checkpreviouspatient', [RegisterController::class, 'checkpreviouspatient'])->name('patient-register.checkpreviouspatient');
+
+
 
 
 
