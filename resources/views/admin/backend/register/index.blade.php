@@ -34,6 +34,9 @@
                     <button type="submit" class="btn btn-success">Search Data Patient...</button>
                 </div>
             </div>
+            <div class="col-md-6">
+                <img src="https://w0.peakpx.com/wallpaper/362/953/HD-wallpaper-medical-technology-surgical-technologist.jpg" alt="" width="100%;">
+            </div>
     </form>
 </div>
 
@@ -47,7 +50,7 @@
                 <h5 class="modal-title" id="patientModalLabel">Patient Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <!-- <div class="modal-body">
                 <p><strong>Patient Code:</strong> <span id="patientCode"></span></p>
                 <p><strong>Name:</strong> <span id="patientName"></span></p>
                 <p><strong>Birth Date:</strong> <span id="patientBirthDate"></span></p>
@@ -58,7 +61,54 @@
                 <p><strong>Education:</strong> <span id="patientEducation"></span></p>
                 <p><strong>Occupation:</strong> <span id="patientOccupation"></span></p>
                 <p><strong>National ID:</strong> <span id="patientNationalId"></span></p>
+            </div> -->
+            <div class="modal-body">
+                <table class="table table-bordered table-striped w-100">
+                    <tbody>
+                        <tr>
+                            <th>Patient Code</th>
+                            <td id="patientCode"></td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td id="patientName"></td>
+                        </tr>
+                        <tr>
+                            <th>Birth Date</th>
+                            <td id="patientBirthDate"></td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td id="patientAddress"></td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td id="patientGender"></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td id="patientPhone"></td>
+                        </tr>
+                        <tr>
+                            <th>Religion</th>
+                            <td id="patientReligion"></td>
+                        </tr>
+                        <tr>
+                            <th>Education</th>
+                            <td id="patientEducation"></td>
+                        </tr>
+                        <tr>
+                            <th>Occupation</th>
+                            <td id="patientOccupation"></td>
+                        </tr>
+                        <tr>
+                            <th>National ID</th>
+                            <td id="patientNationalId"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
