@@ -27,7 +27,6 @@ class EmployeeController extends Controller
 
 
         $request->validate([
-            'employee_code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'gender' => 'required|in:male,female',
@@ -36,8 +35,17 @@ class EmployeeController extends Controller
             'position' => 'required|in:nurse,pharmacist,doctor,finance,security',
         ]);
 
+        // Ambil tanggal hari ini
+        $date = now()->format('Ymd');
+
+        // Hitung jumlah pasien yang terdaftar hari ini
+        $countToday = Employee::whereDate('created_at', now()->toDateString())->count() + 1;
+
+        // Buat kode pasien
+        $employee_code = 'EMC' . $date . str_pad($countToday, 4, '0', STR_PAD_LEFT);
+
         Employee::create([
-            'employee_code' => $request->employee_code,
+            'employee_code' => $employee_code,
             'name' => $request->name,
             'address' => $request->address,
             'gender' => $request->gender,
@@ -65,7 +73,6 @@ class EmployeeController extends Controller
     {
 
         $validated = $request->validate([
-            'employee_code' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'gender' => 'required|in:male,female',

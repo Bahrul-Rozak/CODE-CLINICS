@@ -6,10 +6,6 @@
     <form action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="employee_code">Employee Code</label>
-            <input type="text" class="form-control" id="employee_code" placeholder="Enter Employee Code" name="employee_code">
-        </div>
-        <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="Enter Employee name" name="name">
         </div>
@@ -18,9 +14,9 @@
             <input type="text" class="form-control" id="address" placeholder="Enter address" name="address">
         </div>
         <div class="form-group">
-            <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+            <label for="gender">Gender</label>
             <div class="col-sm-10">
-                <select class="form-select" id="gender" name="gender">
+                <select class="form-control" id="gender" name="gender">
                     <option selected>Select</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -32,9 +28,9 @@
             <input type="text" class="form-control" id="phone" placeholder="Active phone number" name="phone">
         </div>
         <div class="form-group">
-            <label for="religion" class="col-sm-2 col-form-label">Religion</label>
-            <div class="col-sm-10">
-                <select class="form-select" id="religion" name="religion">
+            <label for="religion">Religion</label>
+            <div class="col-12">
+                <select class="form-control" id="religion" name="religion">
                     <option selected>Select</option>
                     <option value="islam">Islam</option>
                     <option value="kristen">Kristen</option>
@@ -45,9 +41,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="position" class="col-sm-2 col-form-label">Position</label>
+            <label for="position">Position</label>
             <div class="col-sm-10">
-                <select class="form-select" id="position" name="position">
+                <select class="form-control" id="position" name="position">
                     <option selected>Select</option>
                     <option value="nurse">Nurse</option>
                     <option value="pharmacist">Pharmacist</option>

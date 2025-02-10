@@ -8,7 +8,7 @@
         @method('PUT')
         <div class="form-group">
             <label for="employee_code">Employee Code</label>
-            <input type="text" class="form-control" id="employee_code" placeholder="Enter Employee Code" name="employee_code" value="{{old('employee_code', $employee_data->employee_code)}}">
+            <input type="text" class="form-control" id="employee_code" placeholder="Enter Employee Code" name="employee_code" value="{{old('employee_code', $employee_data->employee_code)}}" readonly>
         </div>
         <div class="form-group">
             <label for="name">Name</label>
@@ -19,9 +19,9 @@
             <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" value="{{old('address', $employee_data->address)}}">
         </div>
         <div class="form-group">
-            <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+            <label for="gender">Gender</label>
             <div class="col-sm-10">
-                <select class="form-select" id="gender" name="gender">
+                <select class="form-control" id="gender" name="gender">
                     @foreach(['male', 'female'] as $gender)
                     <option value="{{ $gender }}" @if($employee_data->gender==$gender) selected @endif>{{$gender}}</option>
                     @endforeach
@@ -33,9 +33,9 @@
             <input type="text" class="form-control" id="phone" placeholder="Active phone number" name="phone" value="{{old('phone', $employee_data->phone)}}">
         </div>
         <div class="form-group">
-            <label for="religion" class="col-sm-2 col-form-label">Religion</label>
+            <label for="religion">Religion</label>
             <div class="col-sm-10">
-                <select class="form-select" id="religion" name="religion">
+                <select class="form-control" id="religion" name="religion">
                     @foreach(['islam', 'kristen', 'hindu', 'budha', 'konghucu'] as $religion)
                     <option value="{{ $religion }}" @if($employee_data->religion==$religion) selected @endif>{{$religion}}</option>
                     @endforeach
@@ -43,9 +43,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="position" class="col-sm-2 col-form-label">Position</label>
+            <label for="position">Position</label>
             <div class="col-sm-10">
-                <select class="form-select" id="position" name="position">
+                <select class="form-control" id="position" name="position">
                     @foreach(['nurse', 'pharmacist', 'doctor', 'finance', 'security'] as $position)
                     <option value="{{ $position }}" @if($employee_data->position==$position) selected @endif>{{$position}}</option>
                     @endforeach
