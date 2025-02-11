@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -62,7 +63,7 @@ class UserController extends Controller
             'is_super_admin' => 'required|in:0,1',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:6',
-             // Password baru opsional dan jika diisi harus cocok dengan konfirmasi
+            // Password baru opsional dan jika diisi harus cocok dengan konfirmasi
         ]);
 
         $user = User::findOrFail($id);
@@ -91,5 +92,11 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('account-manager.index')->with('success', 'Account deleted successfully');
+    }
+
+    public function logout()
+    {
+        Auth::logout(); // Mengeluarkan pengguna yang sedang login
+        return redirect()->route('login'); // Mengarahkan kembali ke halaman login setelah logout
     }
 }

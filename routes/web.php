@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -44,9 +45,12 @@ Route::resource('account-manager', UserController::class);
 
 
 
-
+Route::post('logout', function () {
+    Auth::logout();
+    return redirect()->route('login'); // Halaman login setelah logout
+})->name('logout');
 
 // Route::middleware(['auth', 'admin'])->group(function () {
 //     Route::resource('doctor', DoctorController::class);
 // });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

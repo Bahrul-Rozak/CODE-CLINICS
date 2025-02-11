@@ -88,7 +88,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('doctor.index') }}" class="nav-link">
                                 <p>👨‍⚕️ Doctor </p>
                             </a>
@@ -140,13 +140,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <p>
-                            ⭕ Logout
-                        </p>
+                    <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <p>⭕ Logout</p>
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
-              
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
