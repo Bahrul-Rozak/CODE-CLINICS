@@ -132,6 +132,7 @@
                         </li>
                     </ul>
                 </li>
+                @if(auth()->check() && auth()->user()->is_super_admin)
                 <li class="nav-item">
                     <a href="{{ route('account-manager.index') }}" class="nav-link">
                         <p>
@@ -139,6 +140,7 @@
                         </p>
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <p>⭕ Logout</p>
