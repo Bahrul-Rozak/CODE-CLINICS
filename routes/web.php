@@ -9,6 +9,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,6 +39,7 @@ Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstoc
 Route::resource('patient', PatientController::class);
 Route::resource('patient-register', RegisterController::class);
 Route::post('/patient-register/checkpreviouspatient', [RegisterController::class, 'checkpreviouspatient'])->name('patient-register.checkpreviouspatient');
+Route::resource('account-manager', UserController::class);
 
 
 

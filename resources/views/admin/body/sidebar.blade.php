@@ -133,7 +133,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
+                    <a href="{{ route('account-manager.index') }}" class="nav-link">
                         <p>
                             💻 Account
                         </p>
