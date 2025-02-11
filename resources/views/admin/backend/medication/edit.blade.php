@@ -13,7 +13,7 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="medication_code">Medication Code</label>
-                    <input type="text" class="form-control" id="medication_code" placeholder="Enter medication_code" name="medication_code" value="{{old('medication_code', $medication_data->medication_code)}}">
+                    <input type="text" class="form-control" id="medication_code" placeholder="Enter medication_code" name="medication_code" value="{{old('medication_code', $medication_data->medication_code)}}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="stock">Stock</label>

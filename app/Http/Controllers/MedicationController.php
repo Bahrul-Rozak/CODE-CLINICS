@@ -51,9 +51,18 @@ class MedicationController extends Controller
             $file->move(public_path($path), $filename);
         }
 
+        // Ambil tanggal hari ini
+        $date = now()->format('Ymd');
+
+        // Hitung jumlah pasien yang terdaftar hari ini
+        $countToday = Medication::whereDate('created_at', now()->toDateString())->count() + 1;
+
+        // Buat kode pasien
+        $medication_code = 'MED' . $date . str_pad($countToday, 4, '0', STR_PAD_LEFT);
+
         // Simpan data ke database
         Medication::create([
-            'medication_code' => $request->medication_code,
+            'medication_code' => $medication_code,
             'stock' => $request->stock,
             'type_id' => $request->type_id,
             'name' => $request->name,
