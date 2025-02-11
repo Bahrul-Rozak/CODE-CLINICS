@@ -29,27 +29,28 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin
-Route::resource('doctor', DoctorController::class);
-Route::resource('clinic', ClinicController::class);
-Route::resource('employee', EmployeeController::class);
-Route::resource('schedule', ScheduleController::class);
-Route::resource('medication-types', MedicationTypeController::class);
-Route::resource('medication', MedicationController::class);
-Route::get('/medication/{id}/edit-stock', [MedicationController::class, 'editstock'])->name('medication.edit_stock');
-Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstock'])->name('medication.add_stock');
-Route::resource('patient', PatientController::class);
-Route::resource('patient-register', RegisterController::class);
-Route::post('/patient-register/checkpreviouspatient', [RegisterController::class, 'checkpreviouspatient'])->name('patient-register.checkpreviouspatient');
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::resource('doctor', DoctorController::class);
+    Route::resource('clinic', ClinicController::class);
+    Route::resource('employee', EmployeeController::class);
+    Route::resource('schedule', ScheduleController::class);
+    Route::resource('medication-types', MedicationTypeController::class);
+    Route::resource('medication', MedicationController::class);
+    Route::get('/medication/{id}/edit-stock', [MedicationController::class, 'editstock'])->name('medication.edit_stock');
+    Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstock'])->name('medication.add_stock');
+    Route::resource('patient', PatientController::class);
+    Route::resource('patient-register', RegisterController::class);
+    Route::post('/patient-register/checkpreviouspatient', [RegisterController::class, 'checkpreviouspatient'])->name('patient-register.checkpreviouspatient');
+});
 
-
-
+Route::middleware(['auth', 'is_super_admin'])->group(function () {
+    Route::resource('account-manager', UserController::class);
+});
 
 Route::post('logout', function () {
     Auth::logout();
     return redirect()->route('login'); // Halaman login setelah logout
 })->name('logout');
 
-Route::middleware(['auth', 'is_super_admin'])->group(function () {
-    Route::resource('account-manager', UserController::class);
-});
+
 require __DIR__ . '/auth.php';
