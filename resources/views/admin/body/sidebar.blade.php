@@ -56,17 +56,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/compose.html" class="nav-link">
+                            <a href="{{ route('patient-queue.index') }}" class="nav-link">
                                 <p>🙋‍♀️ Patient Queue</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                <p>🏥 Diagnose / Recipe</p>
+                            <a href="{{ route('medical-record.index') }}" class="nav-link">
+                                <p>🏥 Diagnose </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/mailbox/read-mail.html" class="nav-link">
+                            <a href="{{route('daily-report.index') }}" class="nav-link">
                                 <p>📈 Daily Report</p>
                             </a>
                         </li>

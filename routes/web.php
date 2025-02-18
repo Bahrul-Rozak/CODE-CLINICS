@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ClinicController;
+use App\Http\Controllers\DailyReportController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\MedicationController;
 use App\Http\Controllers\MedicationTypeController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientQueueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScheduleController;
@@ -41,6 +44,9 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::resource('patient', PatientController::class);
     Route::resource('patient-register', RegisterController::class);
     Route::post('/patient-register/checkpreviouspatient', [RegisterController::class, 'checkpreviouspatient'])->name('patient-register.checkpreviouspatient');
+    Route::resource('patient-queue', PatientQueueController::class);
+    Route::resource('medical-record', MedicalRecordController::class);
+    Route::resource('daily-report', DailyReportController::class);
 });
 
 Route::middleware(['auth', 'is_super_admin'])->group(function () {
@@ -49,7 +55,7 @@ Route::middleware(['auth', 'is_super_admin'])->group(function () {
 
 Route::post('logout', function () {
     Auth::logout();
-    return redirect()->route('login'); // Halaman login setelah logout
+    return redirect()->route('login'); 
 })->name('logout');
 
 

@@ -79,11 +79,16 @@
                 </div>
                 <div class="form-group">
                     <label for="doctor">Doctor</label>
-                    <select class="form-control" id="doctor" name="doctor">
-                        <option selected>Select doctor</option>
-                        <option value="doctor1">Doctor 1</option>
-                        <option value="doctor2">Doctor 2</option>
+                    <select class="form-control" id="doctor" name="doctor_id" required>
+                        <option disabled>Select doctor</option>
+                        @foreach ($doctors as $doctor)
+                        <option value="{{ $doctor->id }}" {{ $doctor->id == $patient_data->doctor_id ? 'selected' : '' }}>
+                            Dr. {{ $doctor->name }} - {{ $doctor->clinic->name }}
+                        </option>
+                        @endforeach
                     </select>
+
+
                 </div>
             </div>
         </div>

@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('medical_records', function (Blueprint $table) {
             $table->id();
             $table->integer('patient_id')->references('id')->on('patients');
-            $table->string('queue_number');
+            $table->string('queue_number')->default('0');
             $table->date('examination_date')->nullable();
-            $table->string('service');
+            $table->enum('service', ['BPJS', 'Jamkesda', 'KIS', 'Jampersal', 'Prudential', 'AXA Mandiri', 'Allianz', 'Manulife', 'AIA', 'Sinarmas MSIG', 'Sequis Life', 'Jasa Raharja', 'BRI Life', 'Puskesmas', 'RSUD'])
+                ->default('BPJS'); // Set default ke BPJS
             $table->string('complaint');
             $table->integer('doctor_id')->references('id')->on('doctors');
             $table->string('diagnosis')->nullable();

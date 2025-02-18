@@ -50,6 +50,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Login as Employee
                     </button>
+                    
                 </div>
                 <div class="col-md-6">
                     <img src="https://img.freepik.com/free-photo/front-view-young-smiling-doctor-medical-suit-sitting-desk-white-wall_179666-27135.jpg?t=st=1738490950~exp=1738494550~hmac=db00d84d40057f5eb6112b69c6c5968537f5a594b6515c137d07d838a8cc926f&w=1380" alt="" width="100%;">
@@ -70,10 +71,10 @@
                 </div>
                 <div class="col-md-6 mt-5">
                     <h1><b>Kenapa Harus <span>Kami?</span></b></h1>
-                    <p> Bikin kamu lebih gampang buat booking janji temu dengan dokter pilihan.
+                    <h3> Bikin kamu lebih gampang buat booking janji temu dengan dokter pilihan.
                         dengan 3T #Tanpa antre panjang, #Tanpa drama cukup beberapa klik,
-                        dan kamu langsung terhubung dengan #Tenaga medis profesional.</p>
-                    <p class="display-6">Temukan Dokter dengan Mudah, Tanpa Ribet!</p>
+                        dan kamu langsung terhubung dengan #Tenaga medis profesional.</h3>
+                    <!-- <p class="display-6">Temukan Dokter dengan Mudah, Tanpa Ribet!</p> -->
                 </div>
             </div>
         </div>
@@ -87,7 +88,7 @@
         <div class="col-12">
             <div class="row">
                 <div class="col-md-4">
-                    <h2 class="mt-5 display-3"><b>Bagaimana Cara <span>Kerjanya?</span></b></h2>
+                    <h2 class="mt-5 display-5"><b>Bagaimana Cara <span>Kerjanya?</span></b></h2>
                     <div class="mt-5">
                         <ul class="display-6">
                             <li>✅ Daftar</li>
@@ -191,7 +192,7 @@
                         <div class="mb-3 row">
                             <label for="employment" class="col-sm-2 col-form-label">Employment</label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="employment" name="occupation">
+                                <select class="form-select" id="occupation" name="occupation">
                                     <option selected>Is currently employed/unemployed</option>
                                     <option value="employed">Employed</option>
                                     <option value="unemployed">Unemployed</option>
@@ -201,7 +202,7 @@
                         <div class="mb-3 row">
                             <label for="complaint" class="col-sm-2 col-form-label">Complaint</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="complaint" rows="3" placeholder="What are you sick with, and how long have you been suffering?"></textarea>
+                                <textarea class="form-control" id="complaint" rows="3" placeholder="What are you sick with, and how long have you been suffering?" name="complaint"></textarea>
                             </div>
                         </div>
                         <div class="mb-3 row">

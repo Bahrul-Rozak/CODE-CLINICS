@@ -13,6 +13,7 @@
         {{ Session::get('message') }}
     </div>
     @endif
+
 </div>
 
 <div class="container-fluid mt-5">
@@ -20,11 +21,11 @@
     <form action="{{ route('patient-register.checkpreviouspatient') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <!-- Kolom Kiri -->
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                    <input type="text" class="form-control" id="name" placeholder="Insert Previous Patient Name..." name="name">
                 </div>
                 <div class="form-group">
                     <label for="birth_date">Birth Date</label>
@@ -34,34 +35,24 @@
                     <button type="submit" class="btn btn-success">Search Data Patient...</button>
                 </div>
             </div>
+
             <div class="col-md-6">
-                <img src="https://w0.peakpx.com/wallpaper/362/953/HD-wallpaper-medical-technology-surgical-technologist.jpg" alt="" width="100%;">
+                <img src="https://img.freepik.com/free-vector/hand-drawn-national-doctor-s-day-illustration-with-medics-essentials_23-2149447532.jpg?t=st=1739776176~exp=1739779776~hmac=b2bbd00f9cdda3f80e226f0d2461513994ff72ec5dfca135473d51ff478e0ff5&w=1380" alt="Login Image" class="img-fluid">
             </div>
+
     </form>
 </div>
 
-
-
 <!-- modal -->
 <div class="modal fade" id="patientModal" tabindex="-1" aria-labelledby="patientModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 800px;">
         <div class="modal-content shadow-lg rounded-3">
+
             <div class="modal-header">
-                <h5 class="modal-title" id="patientModalLabel">Patient Information</h5>
+                <h5 class="modal-title" id="patientModalLabel">⚠ Patient Information</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!-- <div class="modal-body">
-                <p><strong>Patient Code:</strong> <span id="patientCode"></span></p>
-                <p><strong>Name:</strong> <span id="patientName"></span></p>
-                <p><strong>Birth Date:</strong> <span id="patientBirthDate"></span></p>
-                <p><strong>Address:</strong> <span id="patientAddress"></span></p>
-                <p><strong>Gender:</strong> <span id="patientGender"></span></p>
-                <p><strong>Phone:</strong> <span id="patientPhone"></span></p>
-                <p><strong>Religion:</strong> <span id="patientReligion"></span></p>
-                <p><strong>Education:</strong> <span id="patientEducation"></span></p>
-                <p><strong>Occupation:</strong> <span id="patientOccupation"></span></p>
-                <p><strong>National ID:</strong> <span id="patientNationalId"></span></p>
-            </div> -->
+
             <div class="modal-body">
                 <table class="table table-bordered table-striped w-100">
                     <tbody>
@@ -105,13 +96,65 @@
                             <th>National ID</th>
                             <td id="patientNationalId"></td>
                         </tr>
+                        <tr>
+                            <th>Complaint</th>
+                            <td>
+                                <form action="{{ route('patient-register.store') }}" method="post">
+                                    @csrf
+                                    <input type="text" name="patient_id" id="patient_id" value="{{ $patient->id ?? '' }}" hidden>
+                                    <textarea name="complaint" id="complaint" class="w-100 form-control" rows="3"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Doctor</th>
+                            <td>
+                                <select name="doctor_id" id="doctor_id" class="form-control" required>
+                                    <option value="" disabled selected>Select a doctor</option>
+                                    @foreach($doctors as $doctor)
+                                    <option value="{{ $doctor->id }}">
+                                        {{ $doctor->name }} - {{ $doctor->clinic->name }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Service</th>
+                            <td>
+                                <select name="service" id="service" class="form-control">
+                                    <option value="BPJS">BPJS</option>
+                                    <option value="Jamkesda">Jamkesda</option>
+                                    <option value="KIS">KIS</option>
+                                    <option value="Jampersal">Jampersal</option>
+                                    <option value="Prudential">Prudential</option>
+                                    <option value="AXA Mandiri">AXA Mandiri</option>
+                                    <option value="Allianz">Allianz</option>
+                                    <option value="Manulife">Manulife</option>
+                                    <option value="AIA">AIA</option>
+                                    <option value="Sinarmas MSIG">Sinarmas MSIG</option>
+                                    <option value="Sequis Life">Sequis Life</option>
+                                    <option value="Jasa Raharja">Jasa Raharja</option>
+                                    <option value="BRI Life">BRI Life</option>
+                                    <option value="Puskesmas">Puskesmas</option>
+                                    <option value="RSUD">RSUD</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-end">
+                                <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure to create this data?')">Submit</button>
+                                </form>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
             </div>
+
         </div>
     </div>
 </div>
@@ -121,6 +164,37 @@
 
 <!-- jQuery script -->
 <script>
+    // $(document).ready(function() {
+    //     $('form').on('submit', function(e) {
+    //         e.preventDefault();
+
+    //         $.ajax({
+    //             url: $(this).attr('action'),
+    //             method: 'POST',
+    //             data: $(this).serialize(),
+    //             success: function(response) {
+    //                 if (response.success) {
+
+    //                     $('#patientCode').text(response.data.patient_code);
+    //                     $('#patientName').text(response.data.name);
+    //                     $('#patientBirthDate').text(response.data.birth_date);
+    //                     $('#patientAddress').text(response.data.address);
+    //                     $('#patientGender').text(response.data.gender);
+    //                     $('#patientPhone').text(response.data.phone);
+    //                     $('#patientReligion').text(response.data.religion);
+    //                     $('#patientEducation').text(response.data.education);
+    //                     $('#patientOccupation').text(response.data.occupation);
+    //                     $('#patientNationalId').text(response.data.national_id);
+
+    //                     $('#patientModal').modal('show');
+    //                 } else {
+    //                     alert(response.failed);
+    //                 }
+    //             }
+    //         });
+    //     });
+    // });
+
     $(document).ready(function() {
         $('form').on('submit', function(e) {
             e.preventDefault();
@@ -131,7 +205,9 @@
                 data: $(this).serialize(),
                 success: function(response) {
                     if (response.success) {
-                        // Isi data modal dengan data pasien
+                        // Set data pasien ke modal
+                        $('#patientId').val(response.data.patient_id); // Tambahin ini!
+
                         $('#patientCode').text(response.data.patient_code);
                         $('#patientName').text(response.data.name);
                         $('#patientBirthDate').text(response.data.birth_date);
@@ -143,17 +219,39 @@
                         $('#patientOccupation').text(response.data.occupation);
                         $('#patientNationalId').text(response.data.national_id);
 
-                        // Tampilkan modal
                         $('#patientModal').modal('show');
                     } else {
-                        alert(response.failed); // Jika data tidak ditemukan
+                        alert(response.failed);
+                    }
+                }
+            });
+        });
+
+        // Tambahin event listener buat form complaint
+        $('#complaintForm').on('submit', function(e) {
+            e.preventDefault();
+
+            let formData = $(this).serialize();
+
+            console.log(formData); // Debug: Pastikan patient_id gak null
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.success) {
+                        alert('Complaint added successfully! ✅');
+                        $('#patientModal').modal('hide');
+                        $('#complaint').val('');
+                    } else {
+                        alert('Failed to add complaint! ❌');
                     }
                 }
             });
         });
     });
 </script>
-
 
 
 @endsection

@@ -18,4 +18,8 @@ class Patient extends Model
         'occupation',
         'national_id'
     ];
+
+    public function medical(){
+        return $this->hasMany(MedicalRecord::class, 'patient_id');
+    }
 }

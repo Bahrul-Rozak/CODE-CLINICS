@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,8 @@ class PatientController extends Controller
 
     public function create()
     {
-        return view('admin.backend.patient.create');
+        $doctors = Doctor::with('clinic')->get(); // Fetch doctors with clinic details
+        return view('admin.backend.patient.create', compact('doctors'));
     }
 
     public function store(Request $request)
@@ -32,6 +34,7 @@ class PatientController extends Controller
             'education' => 'nullable|string|max:100',
             'occupation' => 'nullable|string|max:100',
             'national_id' => 'nullable|string|max:15',
+            'doctor_id' => 'required|exists:doctors,id', // Ensures doctor_id exists in doctors table
         ]);
 
         // Ambil tanggal hari ini
@@ -54,6 +57,7 @@ class PatientController extends Controller
             'education' => $request->education,
             'occupation' => $request->occupation,
             'national_id' => $request->national_id,
+            'doctor_id' => $request->doctor_id
         ]);
 
         return redirect()->route('patient.index')->with('message', 'Patient Created Successfully');
@@ -67,8 +71,9 @@ class PatientController extends Controller
 
     public function edit($id)
     {
-        $patient_data = Patient::find($id);
-        return view('admin.backend.patient.edit', compact('patient_data'));
+        $patient_data = Patient::findOrFail($id);
+        $doctors = Doctor::with('clinic')->get(); // Fetch doctors with clinic details
+        return view('admin.backend.patient.edit', compact('patient_data', 'doctors'));
     }
 
     public function update(Request $request, $id)
@@ -84,6 +89,7 @@ class PatientController extends Controller
             'education' => 'nullable|string|max:100',
             'occupation' => 'nullable|string|max:100',
             'national_id' => 'nullable|string|max:15',
+            'doctor_id' => 'required|exists:doctors,id', // Ensure the doctor exists
         ]);
 
         $patient = Patient::findOrFail($id);

@@ -21,10 +21,6 @@ class ScheduleController extends Controller
 
     public function store(Request $request)
     {
-        // Testing dulu lah..
-        // dd($request->all());
-
-        // Validasi input
 
         $request->validate([
             'practice_schedule' => 'required|string|max:255',
