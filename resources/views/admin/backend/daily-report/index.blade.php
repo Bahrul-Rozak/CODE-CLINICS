@@ -3,7 +3,6 @@
 @section('content')
 <div class="container-fluid">
     @if(Session::has('message'))
-
     <div class="alert alert-success">
         {{ Session::get('message') }}
     </div>
@@ -31,9 +30,25 @@
                 </tr>
             </thead>
             <tbody>
-
-
-
+                @forelse ($reports as $key => $report)
+                <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $report->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $report->patient->name }}</td>
+                    <td>{{ $report->patient->national_id ?? '-' }}</td>
+                    <td>{{ $report->patient->birth_date }}</td>
+                    <td>{{ $report->patient->patient_code }}</td>
+                    <td>{{ $report->patient->blood_type ?? '-' }}</td>
+                    <td>{{ $report->diagnosis }}</td>
+                    <td>
+                        <a href="{{ route('daily-report.show', $report->id) }}" class="btn btn-info btn-sm">View</a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="9" class="text-center">No Reports Found</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

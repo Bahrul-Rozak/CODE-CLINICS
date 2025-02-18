@@ -69,7 +69,6 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all()); // Debug: cek apakah request masuk dengan benar
         $validatedData = $request->validate([
             'patient_id' => 'required',
             'service' => 'required',

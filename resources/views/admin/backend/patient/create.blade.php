@@ -65,8 +65,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="employment">Employment</label>
-                    <select class="form-control" id="employment" name="occupation">
+                    <label for="occupation">Employment</label>
+                    <select class="form-control" id="occupation" name="occupation">
                         <option selected></option>
                         <option value="employed">Employed</option>
                         <option value="unemployed">Unemployed</option>

@@ -74,8 +74,7 @@
                 </div>
                 <div class="form-group">
                     <label for="complaint">Complaint</label>
-                    <textarea class="form-control" id="complaint" rows="5" placeholder="What are you sick with, and how long have you been suffering?" name="complaint"
-                        value="{{old('complaint', $patient_data->complaint)}}"></textarea>
+                    <textarea class="form-control" id="complaint" rows="5" placeholder="What are you sick with, and how long have you been suffering?" name="complaint">{{ old('complaint', $medical_record->complaint) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="doctor">Doctor</label>
