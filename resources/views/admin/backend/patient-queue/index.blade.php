@@ -30,25 +30,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($queue_data as $index => $record)
+                @foreach($queue_data as $queue)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $record->queue_number }}</td>
-                    <td>{{ $record->created_at }}</td>
-                    <td>{{ $record->patient->name ?? 'N/A' }}</td> <!-- Pastikan relasi 'patient' ada -->
-                    <td>{{ $record->birth_date ?? 'N/A' }}</td> <!-- Pastikan kolom ini ada di model -->
-                    <td>{{ $record->complaint }}</td>
-                    <td>{{ $record->doctor->name ?? 'N/A' }}</td> <!-- Pastikan relasi 'doctor' ada -->
-                    <td>{{ $record->national_id ?? 'N/A' }}</td> <!-- Pastikan kolom ini ada di model -->
-                    <td>
-                        <!-- Tambahkan tombol aksi di sini -->
-                        <a href="{{ route('edit', $record->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('delete', $record->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    <td>{{ $loop->iteration  }}</td>
+                    <td>{{ $queue->queue_number }}</td>
+                    <td>{{ $queue->created_at }}</td>
+                    <td>{{ $queue->patient->name }}</td> <!-- Pastikan relasi 'patient' ada -->
+                    <td>{{ $queue->birth_date }}</td> <!-- Pastikan kolom ini ada di model -->
+                    <td>{{ $queue->complaint }}</td>
+                    <td>{{ $queue->doctor->name }}</td> <!-- Pastikan relasi 'doctor' ada -->
+                    <td>{{ $queue->national_id }}</td> <!-- Pastikan kolom ini ada di model -->
+
                 </tr>
                 @endforeach
             </tbody>
