@@ -28,7 +28,7 @@
                     <th>Complaint</th>
                     <th>Doctor</th>
                     <th>National ID (NIK)</th>
-                    <th style="width: 10%;">Actions</th>
+                    <th style="width: 15%;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,22 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus?')">Hapus</button>
                         </form>
+                        <button onclick="callQueue('{{ $queue->queue_number }}')" class="btn btn-secondary">🔊</button>
+                        <script>
+                            function callQueue(queueNumber) {
+                                let msg = new SpeechSynthesisUtterance(`Queue number ${queueNumber}, please proceed.`);
+
+                                // Atur suara yang lebih manusiawi
+                                msg.voice = speechSynthesis.getVoices().find(voice => voice.name.includes("Google UK English Male")) || speechSynthesis.getVoices()[0];
+                                msg.rate = 0.9; // Kecepatan bicara (0.1 - 10, default 1)
+                                msg.pitch = 1.2; // Nada suara (0 - 2, default 1)
+                                msg.volume = 1; // Volume (0 - 1)
+
+                                window.speechSynthesis.speak(msg);
+                            }
+                        </script>
                     </td>
+
                 </tr>
                 @endforeach
             </tbody>
