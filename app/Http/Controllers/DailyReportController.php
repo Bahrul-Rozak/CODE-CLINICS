@@ -10,7 +10,8 @@ class DailyReportController extends Controller
     public function index()
     {
         // Ambil data medical record dengan report = 1 dan diagnosis tidak null
-        $reports = Medicalrecord::where('report', 1)->whereNotNull('diagnosis')->get();
+        //$reports = Medicalrecord::where('report', 1)->whereNotNull('diagnosis')->get();
+        $reports = Medicalrecord::all();
         return view('admin.backend.daily-report.index', compact('reports'));
     }
 }

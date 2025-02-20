@@ -35,12 +35,14 @@
                     <td>{{ $loop->iteration  }}</td>
                     <td>{{ $queue->queue_number }}</td>
                     <td>{{ $queue->created_at }}</td>
-                    <td>{{ $queue->patient->name }}</td> <!-- Pastikan relasi 'patient' ada -->
-                    <td>{{ $queue->birth_date }}</td> <!-- Pastikan kolom ini ada di model -->
+                    <td>{{ $queue->patient->name }}</td> 
+                    <td>{{ $queue->patient->birth_date }}</td> 
                     <td>{{ $queue->complaint }}</td>
-                    <td>{{ $queue->doctor->name }}</td> <!-- Pastikan relasi 'doctor' ada -->
-                    <td>{{ $queue->national_id }}</td> <!-- Pastikan kolom ini ada di model -->
-
+                    <td>dr. {{ $queue->doctor->name }}</td> 
+                    <td>{{ $queue->patient->national_id }}</td> 
+                    <td>
+                        <a href="#" class="btn btn-info">Edit</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

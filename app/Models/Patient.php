@@ -16,10 +16,18 @@ class Patient extends Model
         'religion',
         'education',
         'occupation',
-        'national_id'
+        'national_id',
+        'doctor_id'
     ];
 
-    public function medical(){
+    public function medical()
+    {
         return $this->hasMany(MedicalRecord::class, 'patient_id');
+    }
+
+    // Relasi ke model Doctor
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 }

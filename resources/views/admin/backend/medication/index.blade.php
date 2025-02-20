@@ -30,8 +30,8 @@
                     <th style="width: 10%; text-align:right;">Price</th>
                     <th style="width: 10%;">Created on</th>
                     <th style="width: 10%;">Expired on</th>
-                    <th style="width: 10%;">Photo</th>
-                    <th style="width: 25%;">Actions</th>
+                    <th style="width: 10%;" hidden>Photo</th>
+                    <th style="width: 15%;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
                     <td style="text-align: right;">Rp. {{ $medications->price }}</td>
                     <td>{{ $medications->created_at->format('Y-m-d')}}</td>
                     <td>{{$medications->expiration_date}}</td>
-                    <td>
+                    <td hidden>
                         <img src="{{ asset('uploads/medication' . $medications->photo) }}" alt="Medication Image">
                     </td>
                     <td>

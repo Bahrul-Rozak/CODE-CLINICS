@@ -45,7 +45,7 @@
         </div>
 
         <!-- KANAN: PREVIEW GAMBAR -->
-        <div class="col-md-6">
+        <div class="col-md-6" hidden>
             <div class="form-group">
                 <label for="photo">Photo</label>
                 <input class="form-control" type="file" id="image" name="photo">

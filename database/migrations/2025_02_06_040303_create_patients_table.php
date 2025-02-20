@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('education')->nullable();
             $table->string('occupation')->nullable();
             $table->string('national_id')->nullable();
+            $table->integer('doctor_id')->references('id')->on('doctors');
             $table->timestamps();
         });
     }
