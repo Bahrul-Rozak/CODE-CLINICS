@@ -41,7 +41,7 @@
                     <td>{{ $medicals->patient->name }}</td>
                     <td>{{ $medicals->patient->birth_date }}</td>
                     <td>{{ $medicals->complaint }}</td>
-                    <td>{{ $medicals->doctor->name }}</td>
+                    <td>dr. {{ $medicals->doctor->name }}</td>
                     <td>
                         @php
                         // Pastikan birth_date ada

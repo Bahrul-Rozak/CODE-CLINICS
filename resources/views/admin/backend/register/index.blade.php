@@ -18,6 +18,7 @@
 
 <div class="container-fluid mt-5">
     <h2>Search Previous Patient</h2>
+    <p class="info">Masih belum bisa aneh, kemungkinan akan masuk materi bonus</p>
     <form action="{{ route('patient-register.checkpreviouspatient') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
