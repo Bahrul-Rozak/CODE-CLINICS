@@ -60,22 +60,41 @@
                         <form action="{{ route('patient-queue.destroy', $queue->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus?')">Hapus</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus?')">Delete</button>
                         </form>
-                        <button onclick="callQueue('{{ $queue->queue_number }}')" class="btn btn-secondary">🔊</button>
+                        <button onclick="callQueue('Nomor antrean {{ $queue->queue_number }}, atas nama {{ $queue->patient->name }}, silahkan menuju ke dokter {{ $queue->doctor->name }}, terima kasih...')" class="btn btn-primary">Call Queue</button>
+
                         <script>
-                            function callQueue(queueNumber) {
-                                let msg = new SpeechSynthesisUtterance(`Queue number ${queueNumber}, please proceed.`);
+                            function callQueue(fullText) {
+                                let audio = new Audio("https://www.myinstants.com/media/sounds/ding-sound-effect_2.mp3"); // Suara ding dong
+                                audio.play(); // Mainkan suara
 
-                                // Atur suara yang lebih manusiawi
-                                msg.voice = speechSynthesis.getVoices().find(voice => voice.name.includes("Google UK English Male")) || speechSynthesis.getVoices()[0];
-                                msg.rate = 0.9; // Kecepatan bicara (0.1 - 10, default 1)
-                                msg.pitch = 1.2; // Nada suara (0 - 2, default 1)
-                                msg.volume = 1; // Volume (0 - 1)
+                                audio.onended = function() {
+                                    setTimeout(() => { // Tambah delay biar voice-nya ke-load dulu
+                                        let msg = new SpeechSynthesisUtterance(fullText);
 
-                                window.speechSynthesis.speak(msg);
+                                        let voices = speechSynthesis.getVoices();
+                                        let indonesianVoice = voices.find(voice => voice.lang === "id-ID") || voices.find(voice => voice.name.includes("Google")) || voices[0];
+
+                                        msg.voice = indonesianVoice;
+                                        msg.rate = 0.8;
+                                        msg.pitch = 1.1;
+                                        msg.volume = 1;
+                                        msg.lang = 'id-ID'; // Bahasa Indonesia
+
+                                        window.speechSynthesis.speak(msg);
+                                    }, 500); // Delay 500ms buat nunggu voice ke-load
+                                };
+
+                                // Fix bug: Tunggu sampai voice list ter-load sebelum ngomong
+                                if (speechSynthesis.getVoices().length === 0) {
+                                    speechSynthesis.onvoiceschanged = function() {
+                                        audio.onended();
+                                    };
+                                }
                             }
                         </script>
+
                     </td>
 
                 </tr>
