@@ -29,6 +29,7 @@ class MedicalRecord extends Model
         'weight',
         'waist',
         'clinic_id',
+        'status'
     ];
 
     protected $guarded = ['id'];

@@ -21,6 +21,7 @@
                     <th style="width: 5%;" class="text-center">No</th>
                     <th>Queue Number</th>
                     <th>Registration Time</th>
+                    <th>Status</th>
                     <th>Name</th>
                     <th>Service</th>
                     <th>Birth Date</th>
@@ -36,6 +37,18 @@
                     <td class="text-center">{{ $loop->iteration  }}</td>
                     <td>{{ $queue->queue_number }}</td>
                     <td>{{ $queue->created_at }}</td>
+                    <td>
+                        @if ($queue->status == 'Waiting')
+                        <span class="badge badge-warning">Waiting</span>
+                        @elseif ($queue->status == 'In Progress')
+                        <span class="badge badge-primary">In Progress</span>
+                        @elseif ($queue->status == 'Completed')
+                        <span class="badge badge-success">Completed</span>
+                        @else
+                        <span class="badge badge-secondary">{{ ucfirst($queue->status) }}</span>
+                        @endif
+                    </td>
+
                     <td>{{ $queue->patient->name }}</td>
                     <td>{{ $queue->service }}</td>
                     <td>{{ $queue->patient->birth_date }}</td>

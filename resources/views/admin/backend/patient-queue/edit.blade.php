@@ -54,6 +54,16 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select name="status" class="form-control">
+                        <option value="Waiting" {{ $queue_data->status == 'Waiting' ? 'selected' : '' }}>Waiting</option>
+                        <option value="In Progress" {{ $queue_data->status == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                        <option value="Completed" {{ $queue_data->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+                    </select>
+                </div>
+
+
                 <button type="submit" class="btn btn-success">Update</button>
                 <a href="{{ route('patient-queue.index') }}" class="btn btn-warning">Back</a>
             </form>

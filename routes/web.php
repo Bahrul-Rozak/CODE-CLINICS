@@ -42,6 +42,10 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/medication/{id}/edit-stock', [MedicationController::class, 'editstock'])->name('medication.edit_stock');
     Route::post('/medication/{id}/add-stock', [MedicationController::class, 'addstock'])->name('medication.add_stock');
     Route::resource('patient', PatientController::class);
+    Route::post('/patient/{id}/medical-record', [PatientController::class, 'storeMedicalRecord'])->name('patient.medical-record.store');
+    // Route::get('/patients/{id}/medical-record/create', [PatientController::class, 'createMedicalRecord'])->name('patient.medical-record.create');
+    Route::delete('/patients/medical-record/{id}', [PatientController::class, 'destroyMedicalRecord'])->name('medical-record.destroy');
+
     Route::resource('patient-register', RegisterController::class);
     Route::post('/patient-register/checkpreviouspatient', [RegisterController::class, 'checkpreviouspatient'])->name('patient-register.checkpreviouspatient');
     Route::resource('patient-queue', PatientQueueController::class);
@@ -55,7 +59,7 @@ Route::middleware(['auth', 'is_super_admin'])->group(function () {
 
 Route::post('logout', function () {
     Auth::logout();
-    return redirect()->route('login'); 
+    return redirect()->route('login');
 })->name('logout');
 
 

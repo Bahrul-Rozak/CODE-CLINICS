@@ -55,8 +55,8 @@
                             <label>Treatment</label>
                             <select class="form-control" name="treatment">
                                 <option value="">Select...</option>
-                                <option value="general" {{ $medicalRecord->treatment == 'general' ? 'selected' : '' }}>General</option>
-                                <option value="vip" {{ $medicalRecord->treatment == 'vip' ? 'selected' : '' }}>VIP</option>
+                                <option value="outpatient" {{ $medicalRecord->treatment == 'outpatient' ? 'selected' : '' }}>Out patient</option>
+                                <option value="inpatient" {{ $medicalRecord->treatment == 'inpatient' ? 'selected' : '' }}>in patient</option>
                             </select>
                         </div>
 
@@ -113,8 +113,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Service Type</label>
-                            <input type="text" class="form-control" value="General" readonly>
+                            <label>Service</label>
+                            <select name="service" id="service" class="form-control">
+                                @foreach(["BPJS", "Jamkesda", "KIS", "Jampersal", "Prudential", "AXA Mandiri", "Allianz", "Manulife", "AIA", "Sinarmas MSIG", "Sequis Life", "Jasa Raharja", "BRI Life", "Puskesmas", "RSUD"] as $service)
+                                <option value="{{ $service }}" aria-readonly="true">{{ $service }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">

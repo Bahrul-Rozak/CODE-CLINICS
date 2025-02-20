@@ -33,7 +33,7 @@
                     <th>Education</th>
                     <th>Occupation</th>
                     <th>NIK</th>
-                    <th style="width: 15%;">Actions</th>
+                    <th style="width:10%;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +58,6 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this clinic?')">Delete</button>
                         </form>
-                        <a href="" class="btn btn-warning">View </a>
                     </td>
 
                 </tr>
@@ -68,4 +67,5 @@
         </table>
     </div>
 </div>
+
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use App\Models\MedicalRecord;
+use App\Models\Medication;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -91,14 +92,36 @@ class PatientController extends Controller
     }
 
 
+    // public function edit($id)
+    // {
+    //     $patient_data = Patient::with('doctor')->findOrFail($id); // Ambil patient beserta dokter
+    //     $medical_record = MedicalRecord::where('patient_id', $id)->first();
+    //     $doctors = Doctor::with('clinic')->get(); // Ambil semua dokter dengan data klinik
+
+    //     return view('admin.backend.patient.edit', compact('patient_data', 'medical_record', 'doctors'));
+    // }
+
+    // public function edit($id)
+    // {
+    //     $patient_data = Patient::findOrFail($id);
+    //     $doctors = Doctor::all();
+
+    //     // Ambil semua rekam medis pasien berdasarkan patient_id
+    //     $medical_records = MedicalRecord::where('patient_id', $id)->orderBy('created_at', 'desc')->get();
+
+    //     return view('admin.backend.patient.edit', compact('patient_data', 'doctors', 'medical_records'));
+    // }
+
     public function edit($id)
     {
-        $patient_data = Patient::with('doctor')->findOrFail($id); // Ambil patient beserta dokter
-        $medical_record = MedicalRecord::where('patient_id', $id)->first();
-        $doctors = Doctor::with('clinic')->get(); // Ambil semua dokter dengan data klinik
+        $patient_data = Patient::findOrFail($id);
+        $medical_record = MedicalRecord::where('patient_id', $id)->latest()->first();
+        $medical_records = MedicalRecord::where('patient_id', $id)->get();
+        $doctors = Doctor::all();
 
-        return view('admin.backend.patient.edit', compact('patient_data', 'medical_record', 'doctors'));
+        return view('admin.backend.patient.edit', compact('patient_data', 'medical_record', 'medical_records', 'doctors'));
     }
+
 
 
     public function update(Request $request, $id)
@@ -142,5 +165,58 @@ class PatientController extends Controller
         $patient->delete();
 
         return redirect()->route('patient.index')->with('success', 'Patient deleted successfully');
+    }
+
+    // public function createMedicalRecord($id)
+    // {
+    //     $medications = Medication::all(); // Ambil semua data obat dari tabel medications
+    //     $patient = Patient::findOrFail($id); // Pastikan pasien ada
+
+    //     return view('medical_records.create', compact('medications', 'patient'));
+    // }
+
+
+    public function storeMedicalRecord(Request $request, $id)
+    {
+        $request->validate([
+            'examination_date' => 'required|date',
+            'complaint' => 'required|string',
+            'diagnosis' => 'required|string',
+            'doctor_id' => 'required|exists:doctors,id', // Pastikan dokter ada di database
+            // 'medications' => 'required|nullable'
+            'service' => 'required|string|max:255',
+            'notes' => 'nullable|string|max:500',
+            'treatment' => 'nullable|string|max:500',
+            'blood_type' => 'nullable|string|max:3',
+            'height' => 'nullable|numeric',
+            'weight' => 'nullable|numeric',
+            'waist' => 'nullable|numeric',
+        ]);
+
+        MedicalRecord::create([
+            'patient_id' => $id,
+            'doctor_id' => $request->doctor_id, // Pastikan ini ada!
+            'examination_date' => $request->examination_date,
+            'complaint' => $request->complaint,
+            'diagnosis' => $request->diagnosis,
+            'service' => $request->service,
+            'notes' => $request->notes,
+            'treatment' => $request->treatment,
+            'blood_type' => $request->blood_type,
+            'height' => $request->height,
+            'weight' => $request->weight,
+            'waits' => $request->waist,
+            // 'medications' => $request->medications
+        ]);
+
+        return redirect()->back()->with('success', 'Medical record added successfully');
+    }
+
+    public function destroyMedicalRecord($id)
+    {
+        $record = MedicalRecord::findOrFail($id);
+        $record->delete();
+
+        return redirect()->back()->with('success', 'Medical record deleted successfully');
     }
 }

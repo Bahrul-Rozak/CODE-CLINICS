@@ -31,6 +31,7 @@ class PatientQueueController extends Controller
             'doctor_id' => 'required|exists:doctors,id',
             'service' => 'required|string',
             'complaint' => 'nullable|string',
+            'status' => 'nullable|string',
         ]);
 
         MedicalRecord::create($request->all());
@@ -56,6 +57,7 @@ class PatientQueueController extends Controller
             'doctor_id' => 'required|exists:doctors,id',
             'service' => 'required|string',
             'complaint' => 'nullable|string',
+            'status' => 'nullable|string',
         ]);
 
         // Cari data berdasarkan ID
@@ -67,6 +69,7 @@ class PatientQueueController extends Controller
             'doctor_id' => $request->doctor_id,
             'service' => $request->service,
             'complaint' => $request->complaint,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('patient-queue.index')->with('success', 'Data berhasil diperbarui!');
