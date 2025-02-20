@@ -23,7 +23,6 @@ class PatientController extends Controller
         return view('admin.backend.patient.create', compact('doctors'));
     }
 
-
     public function store(Request $request)
     {
         // Validasi input

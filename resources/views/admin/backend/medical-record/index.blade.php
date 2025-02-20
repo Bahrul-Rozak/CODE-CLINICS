@@ -35,7 +35,7 @@
                     <td>{{ $loop->iteration  }}</td>
                     <td>{{ $medicals->queue_number }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Diagnose</a>
+                        <a href="{{ route('medical-record.edit',$medicals->id) }}" class="btn btn-primary">Diagnose</a>
                     </td>
                     <td>{{ $medicals->patient->patient_code }}</td>
                     <td>{{ $medicals->patient->name }}</td>
