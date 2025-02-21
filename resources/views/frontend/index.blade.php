@@ -254,7 +254,7 @@
                                 <label for="employment" class="col-sm-2 col-form-label">Employment</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="occupation" name="occupation">
-                                        <option selected></option>
+                                        <option selected>Select Employment Status</option>
                                         <option value="employed">Employed</option>
                                         <option value="unemployed">Unemployed</option>
                                     </select>
@@ -288,10 +288,6 @@
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -299,7 +295,40 @@
 
     <!-- End Modal -->
 
+    <!-- Modal Konfirmasi -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Registration Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Queue Number:</strong> {{ session('queueNumber') }}</p>
+                    <p><strong>Name:</strong> {{ session('nama') }}</p>
+                    <p><strong>Registration Time:</strong> {{ session('timestamps') }}</p>
+                    <p><strong>Estimated Arrival:</strong> {{ session('arrival_schedule') }}</p>
+                    <p><strong>Examination Date:</strong> {{ session('examination_date') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('frontend/assets/js/bootstrap.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var queueNumber = @json(session('queueNumber'));
+            if (queueNumber) {
+                var confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+                confirmationModal.show();
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>

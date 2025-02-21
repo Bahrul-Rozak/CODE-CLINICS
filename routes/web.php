@@ -17,11 +17,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
 Route::get('/', [FrontendController::class, 'index']);
 Route::post('/patient-sign-up', [FrontendController::class, 'patientSignUp'])->name('patient.signup');
+Route::get('/queue-list', [FrontendController::class, 'queueList']);
 
 
 Route::get('/dashboard', function () {

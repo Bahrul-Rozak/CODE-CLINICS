@@ -73,6 +73,13 @@ class FrontendController extends Controller
             'queue_number' => str_pad($queueNumber, 3, '0', STR_PAD_LEFT),
         ]);
 
+        // Simpan data antrian ke session
+        session()->flash('queueNumber', str_pad($queueNumber, 3, '0', STR_PAD_LEFT));
+        session()->flash('nama', $request->name);
+        session()->flash('timestamps', now()->format('H:i'));
+        session()->flash('arrival_schedule', now()->addMinutes(30)->format('H:i'));
+        session()->flash('examination_date', now()->format('Y-m-d'));
+
         return redirect('/')->with('success', 'Pendaftaran berhasil! Silakan tunggu antrian.');
     }
 }
