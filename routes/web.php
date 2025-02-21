@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClearDatabaseController;
 use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DailyReportController;
 use App\Http\Controllers\DoctorController;
@@ -59,6 +60,7 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
 
 Route::middleware(['auth', 'is_super_admin'])->group(function () {
     Route::resource('account-manager', UserController::class);
+    Route::resource('clear-database', ClearDatabaseController::class);
 });
 
 Route::post('logout', function () {

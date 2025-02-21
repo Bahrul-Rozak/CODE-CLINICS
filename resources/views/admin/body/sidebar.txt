@@ -32,116 +32,122 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Dashboard -->
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
-                        <p>☢ Dashboard</p>
+                    <a href="{{ route('dashboard') }}" class="nav-link">
+                        <p>
+                            ☢ Dashboard
+                        </p>
                     </a>
                 </li>
-
                 <li class="nav-header">General</li>
-                <!-- Registration -->
-                <li class="nav-item {{ Request::is('patient-register*', 'patient-queue*', 'medical-record*', 'daily-report*') ? 'menu-open' : '' }}">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <p>📝 Registration <i class="fas fa-angle-left right"></i></p>
+                        <p>
+                            📝 Registration
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('patient-register.index') }}" class="nav-link {{ Request::is('patient-register*') ? 'active' : '' }}">
+                            <a href="{{ route('patient-register.index') }}" class="nav-link">
                                 <p>😷 Patient Registration</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('patient-queue.index') }}" class="nav-link {{ Request::is('patient-queue*') ? 'active' : '' }}">
+                            <a href="{{ route('patient-queue.index') }}" class="nav-link">
                                 <p>🙋‍♀️ Patient Queue</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('medical-record.index') }}" class="nav-link {{ Request::is('medical-record*') ? 'active' : '' }}">
-                                <p>🏥 Diagnose</p>
+                            <a href="{{ route('medical-record.index') }}" class="nav-link">
+                                <p>🏥 Diagnose </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('daily-report.index') }}" class="nav-link {{ Request::is('daily-report*') ? 'active' : '' }}">
+                            <a href="{{route('daily-report.index') }}" class="nav-link">
                                 <p>📈 Daily Report</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <!-- Patient -->
                 <li class="nav-item">
-                    <a href="{{ route('patient.index') }}" class="nav-link {{ Request::is('patient*') ? 'active' : '' }}">
-                        <p>😷 Patient</p>
+                    <a href="{{ route('patient.index') }}" class="nav-link">
+                        <p>
+                            😷 Patient
+                        </p>
                     </a>
                 </li>
-
                 <li class="nav-header">Master Data</li>
-                <!-- Doctor -->
-                <li class="nav-item {{ Request::is('doctor*', 'schedule*', 'clinic*') ? 'menu-open' : '' }}">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <p>👩‍⚕️ Doctor <i class="fas fa-angle-left right"></i></p>
+                        <p>
+                            👩‍⚕️ Doctor
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('doctor.index') }}" class="nav-link {{ Request::is('doctor*') ? 'active' : '' }}">
-                                <p>👨‍⚕️ Doctor</p>
+                            <a href="{{ route('doctor.index') }}" class="nav-link">
+                                <p>👨‍⚕️ Doctor </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('schedule.index') }}" class="nav-link {{ Request::is('schedule*') ? 'active' : '' }}">
+                            <a href="{{ route('schedule.index') }}" class="nav-link">
                                 <p>📅 Doctor Schedule</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('clinic.index') }}" class="nav-link {{ Request::is('clinic*') ? 'active' : '' }}">
+                            <a href="{{ route('clinic.index') }}" class="nav-link">
                                 <p>🩺 Clinics / Specialist</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <!-- Employee -->
                 <li class="nav-item">
-                    <a href="{{ route('employee.index') }}" class="nav-link {{ Request::is('employee*') ? 'active' : '' }}">
-                        <p>💼 Employee</p>
+                    <a href="{{ route('employee.index') }}" class="nav-link">
+                        <p>
+                            💼 Employee
+                        </p>
                     </a>
                 </li>
-
-                <!-- Pharmacist -->
-                <li class="nav-item {{ Request::is('medication*', 'medication-types*') ? 'menu-open' : '' }}">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <p>⚕ Pharmacist <i class="fas fa-angle-left right"></i></p>
+                        <p>
+                            ⚕ Pharmacist
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('medication.index') }}" class="nav-link {{ Request::is('medication*') ? 'active' : '' }}">
+                            <a href="{{ route('medication.index') }}" class="nav-link">
                                 <p>💊 Medications</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('medication-types.index') }}" class="nav-link {{ Request::is('medication-types*') ? 'active' : '' }}">
+                            <a href="{{ route('medication-types.index') }}" class="nav-link">
                                 <p>🩺 Medications Type</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <!-- Super Admin Only -->
                 @if(auth()->check() && auth()->user()->is_super_admin)
                 <li class="nav-item">
-                    <a href="{{ route('account-manager.index') }}" class="nav-link {{ Request::is('account-manager*') ? 'active' : '' }}">
-                        <p>💻 Account</p>
+                    <a href="{{ route('account-manager.index') }}" class="nav-link">
+                        <p>
+                            💻 Account
+                        </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('clear-database.index') }}" class="nav-link {{ Request::is('clear-database*') ? 'active' : '' }}">
-                        <p>☠ Clear Database</p>
+                    <a href="{{ route('clear-database.index') }}" class="nav-link">
+                        <p>
+                            ☠ Clear Database
+                        </p>
                     </a>
                 </li>
                 @endif
-
-                <!-- Logout -->
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <p>⭕ Logout</p>
@@ -150,6 +156,7 @@
                         @csrf
                     </form>
                 </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
