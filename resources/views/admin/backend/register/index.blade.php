@@ -165,36 +165,6 @@
 
 <!-- jQuery script -->
 <script>
-    // $(document).ready(function() {
-    //     $('form').on('submit', function(e) {
-    //         e.preventDefault();
-
-    //         $.ajax({
-    //             url: $(this).attr('action'),
-    //             method: 'POST',
-    //             data: $(this).serialize(),
-    //             success: function(response) {
-    //                 if (response.success) {
-
-    //                     $('#patientCode').text(response.data.patient_code);
-    //                     $('#patientName').text(response.data.name);
-    //                     $('#patientBirthDate').text(response.data.birth_date);
-    //                     $('#patientAddress').text(response.data.address);
-    //                     $('#patientGender').text(response.data.gender);
-    //                     $('#patientPhone').text(response.data.phone);
-    //                     $('#patientReligion').text(response.data.religion);
-    //                     $('#patientEducation').text(response.data.education);
-    //                     $('#patientOccupation').text(response.data.occupation);
-    //                     $('#patientNationalId').text(response.data.national_id);
-
-    //                     $('#patientModal').modal('show');
-    //                 } else {
-    //                     alert(response.failed);
-    //                 }
-    //             }
-    //         });
-    //     });
-    // });
 
     $(document).ready(function() {
         $('form').on('submit', function(e) {

@@ -4,6 +4,7 @@ use App\Http\Controllers\ClinicController;
 use App\Http\Controllers\DailyReportController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\MedicationController;
 use App\Http\Controllers\MedicationTypeController;
@@ -16,9 +17,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+Route::get('/', [FrontendController::class, 'index']);
+Route::post('/patient-sign-up', [FrontendController::class, 'patientSignUp'])->name('patient.signup');
+
 
 Route::get('/dashboard', function () {
     return view('admin.index');

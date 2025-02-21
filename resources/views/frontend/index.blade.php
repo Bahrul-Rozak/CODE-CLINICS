@@ -7,230 +7,295 @@
     <title>Klinik Pintar</title>
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #1e3a8a;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #ffffff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #93c5fd;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+
+        .btn-secondary {
+            background-color: #6366f1;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #4f46e5;
+        }
+
+        .banner {
+            background: linear-gradient(rgba(30, 58, 138, 0.7), rgba(30, 58, 138, 0.7)), url('https://source.unsplash.com/1600x900/?medical,hospital');
+            background-size: cover;
+            color: white;
+            padding: 80px 0;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            transition: 0.3s ease-in-out;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .text-primary {
+            color: #4f46e5 !important;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: #ffffff;
+            padding: 20px 0;
+            font-size: 14px;
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <!-- Navbar start -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="{{ asset('frontend/assets/images/logo-klinik-pintar.png') }}" alt="logo-klinik-pintar" width="250px;"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="booking.html">Temukan dan Buat Janji</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <button class="btn button-secondary" type="submit">Masuk</button>
-                    <button class="btn button-primary" type="submit">Daftar</button>
-                </form>
+    <header class="container mt-5 pt-5 text-center">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-md-start">
+                <h1 class="header-title">Selamat <span class="text-primary">Datang!</span></h1>
+                <p class="lead">Temukan Dokter, Buat Janji, Mudah.</p>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Coba Mendaftar!</button>
+                <button class="btn btn-secondary">Lihat Antrian</button>
             </div>
-        </div>
-    </nav>
-
-    <!-- End Navbar -->
-
-    <!-- Header Start -->
-
-    <header class="container">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-6 header-title">
-                    <h1 class="display-1"><b>Selamat <span>Datang!</span></b></h1>
-                    <p class="display-6">Temukan Dokter, Buat Janji, Mudah</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Register as Patient
-                    </button>
-
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Login as Employee
-                    </button>
-                    
-                </div>
-                <div class="col-md-6">
-                    <img src="https://img.freepik.com/free-photo/front-view-young-smiling-doctor-medical-suit-sitting-desk-white-wall_179666-27135.jpg?t=st=1738490950~exp=1738494550~hmac=db00d84d40057f5eb6112b69c6c5968537f5a594b6515c137d07d838a8cc926f&w=1380" alt="" width="100%;">
-                </div>
+            <div class="col-md-6">
+                <img src="https://img.freepik.com/free-photo/front-view-young-smiling-doctor_179666-27135.jpg" alt="doctor" class="img-fluid rounded">
             </div>
         </div>
     </header>
 
-    <!-- End Header -->
+    <section class="container text-center my-5 p-3">
+        <h2 class="fw-bold">Kenapa Harus <span class="text-primary">Kami?</span></h2>
+        <p class="lead">Tanpa antre panjang, tanpa drama, langsung terhubung dengan tenaga medis profesional.</p>
+    </section>
 
-    <!-- Tentang Kami Start -->
-
-    <section class="about-us container">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="https://img.freepik.com/free-photo/medical-pretty-cute-doctor-white-lab-coat-hat-with-computer-blessed-happy_140725-166924.jpg?t=st=1738491204~exp=1738494804~hmac=ed169979b6e7317d29ac80e2f145d585bee59546dfa1a74260bb462a616d4ddd&w=740" alt="" width="100%;">
+    <section class="container my-5 text-center p-3">
+        <h2 class="fw-bold">Cara Menggunakan Klinik Pintar</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card p-4 text-center shadow-sm">
+                    <i class="fa fa-user-plus text-success display-4"></i>
+                    <h5 class="mt-3">Daftar</h5>
+                    <p>Buat akun dengan mudah dan cepat.</p>
                 </div>
-                <div class="col-md-6 mt-5">
-                    <h1><b>Kenapa Harus <span>Kami?</span></b></h1>
-                    <h3> Bikin kamu lebih gampang buat booking janji temu dengan dokter pilihan.
-                        dengan 3T #Tanpa antre panjang, #Tanpa drama cukup beberapa klik,
-                        dan kamu langsung terhubung dengan #Tenaga medis profesional.</h3>
-                    <!-- <p class="display-6">Temukan Dokter dengan Mudah, Tanpa Ribet!</p> -->
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center shadow-sm">
+                    <i class="fa fa-search text-primary display-4"></i>
+                    <h5 class="mt-3">Temukan</h5>
+                    <p>Cari dokter yang sesuai dengan kebutuhanmu.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center shadow-sm">
+                    <i class="fa fa-calendar-check text-warning display-4"></i>
+                    <h5 class="mt-3">Buat Janji</h5>
+                    <p>Tentukan waktu konsultasi dengan mudah.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- End Tentang Kami -->
-
-    <!-- Cara Kerja Start -->
-
-    <section class="how-works container">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-4">
-                    <h2 class="mt-5 display-5"><b>Bagaimana Cara <span>Kerjanya?</span></b></h2>
-                    <div class="mt-5">
-                        <ul class="display-6">
-                            <li>✅ Daftar</li>
-                            <li>✅ Temukan</li>
-                            <li>✅ Buat Janji</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <img src="https://img.freepik.com/free-photo/portrait-handsome-young-male-doctor_171337-5097.jpg?t=st=1738492188~exp=1738495788~hmac=c7b5091b1bc55b776d827e9da1373d41d51f9db62b909f99b59c8106634e8dee&w=1380" alt="" width="100%;">
-                </div>
-            </div>
-    </section>
-    <!-- End Cara Kerja -->
-
-    <!-- banner start -->
-
     <section class="banner text-center">
-        <p class="display-6 mb-5">Temukan Dokter dengan Mudah, Tanpa Ribet!</p>
-        <img src="{{ asset('frontend/assets/images/logo-klinik-pintar.png') }}" alt="" width="40%;">
+        <h3 class="fw-bold">Temukan Dokter dengan Mudah, Tanpa Ribet!</h3>
+        <img src="{{ asset('frontend/assets/images/logo-klinik-pintar.png') }}" alt="logo" width="200px">
     </section>
 
-
-    <!-- end banner -->
-
-
-
-    <!-- Footer start -->
-
-    <footer class="text-center mt-5">
+    <footer class="text-center">
         <p>Developed with 🧡 by Bahrul Rozak</p>
     </footer>
 
-    <!-- End Footer -->
+
 
     <!-- Modal -->
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Patient Registration Form</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        @csrf
-                        <div class="mb-3 row">
-                            <label for="name" class="col-sm-2 col-form-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+    <form action="{{ route('patient.signup') }}" method="POST">
+        @csrf
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Patient Registration Form</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="post">
+                            @csrf
+                            <div class="mb-3 row">
+                                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="address" class="col-sm-2 col-form-label">Address</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                            <div class="mb-3 row">
+                                <label for="address" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="birth_date" class="col-sm-2 col-form-label">Birth Date</label>
-                            <div class="col-sm-10">
-                                <input type="date" class="form-control" id="birth_date" name="birth_date">
+                            <div class="mb-3 row">
+                                <label for="birth_date" class="col-sm-2 col-form-label">Birth Date</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" id="birth_date" name="birth_date">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="national_id" class="col-sm-2 col-form-label">National Id</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="national_id" placeholder="national_id" name="national_id"> 
+                            <div class="mb-3 row">
+                                <label for="national_id" class="col-sm-2 col-form-label">National Id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="national_id" placeholder="national_id" name="national_id">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="gender" class="col-sm-2 col-form-label">Gender</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="gender" name="gender">
-                                    <option selected>Select</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
+                            <div class="mb-3 row">
+                                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" id="gender" name="gender">
+                                        <option selected>Select</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="phone" placeholder="Active Phone Number" name="phone">
+                            <div class="mb-3 row">
+                                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="phone" placeholder="Active Phone Number" name="phone">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="religion" class="col-sm-2 col-form-label">Religion</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="religion" placeholder="Religion" name="religion">
+                            <div class="mb-3 row">
+                                <label for="religion" class="col-sm-2 col-form-label">Religion</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="religion" name="religion">
+                                        <option selected>Select Religion</option>
+                                        <option value="islam">Islam</option>
+                                        <option value="kristen">Kristen</option>
+                                        <option value="hindu">Hindu</option>
+                                        <option value="budha">Budha</option>
+                                        <option value="konghucu">Konghucu</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="education" class="col-sm-2 col-form-label">Education</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="education" placeholder="-" name="education">
+                            <div class="mb-3 row">
+                                <label for="education" class="col-sm-2 col-form-label">Education</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="education" name="education">
+                                        <option selected>Select Education Level</option>
+                                        <option value="sd">SD</option>
+                                        <option value="smp">SMP</option>
+                                        <option value="sma">SMA</option>
+                                        <option value="diploma">Diploma</option>
+                                        <option value="sarjana">Sarjana (S1)</option>
+                                        <option value="magister">Magister (S2)</option>
+                                        <option value="doktor">Doktor (S3)</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="employment" class="col-sm-2 col-form-label">Employment</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="occupation" name="occupation">
-                                    <option selected>Is currently employed/unemployed</option>
-                                    <option value="employed">Employed</option>
-                                    <option value="unemployed">Unemployed</option>
-                                </select>
+                            <div class="mb-3 row">
+                                <label for="employment" class="col-sm-2 col-form-label">Employment</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="occupation" name="occupation">
+                                        <option selected></option>
+                                        <option value="employed">Employed</option>
+                                        <option value="unemployed">Unemployed</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="complaint" class="col-sm-2 col-form-label">Complaint</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" id="complaint" rows="3" placeholder="What are you sick with, and how long have you been suffering?" name="complaint"></textarea>
+                            <div class="mb-3 row">
+                                <label for="complaint" class="col-sm-2 col-form-label">Complaint</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="complaint" rows="3" placeholder="What are you sick with, and how long have you been suffering?" name="complaint"></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="doctor" class="col-sm-2 col-form-label">Doctor</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="doctor">
-                                    <option selected>Select doctor</option>
-                                    <option value="doctor1">Doctor 1</option>
-                                    <option value="doctor2">Doctor 2</option>
-                                </select>
+                            <div class="mb-3 row">
+                                <label for="doctor" class="col-sm-2 col-form-label">Doctor</label>
+                                <div class="col-sm-10">
+                                    <select name="doctor_id" id="doctor_id" class="form-control" required>
+                                        <option value="" disabled selected>Select a doctor</option>
+                                        @foreach($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}">
+                                            {{ $doctor->name }} - {{ $doctor->clinic->name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-sm-10 offset-sm-2">
-                                <button type="button" class="btn btn-secondary">Previous Patient?</button>
-                                <button type="reset" class="btn btn-danger">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Register</button>
+                            <div class="mb-3 row">
+                                <div class="col-sm-10 offset-sm-2">
+                                    <button type="button" class="btn btn-secondary">Previous Patient?</button>
+                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
     <!-- End Modal -->
 
