@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index']);
 Route::post('/patient-sign-up', [FrontendController::class, 'patientSignUp'])->name('patient.signup');
 Route::get('/queue-list', [FrontendController::class, 'queueList']);
+Route::get('/queue', [FrontendController::class, 'queue'])->name('queue');
+
 
 
 Route::get('/dashboard', function () {
