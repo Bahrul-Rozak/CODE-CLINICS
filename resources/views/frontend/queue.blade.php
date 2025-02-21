@@ -115,15 +115,21 @@
                             <td>{{ $patient->queue_number }}</td>
                             <td>{{ $patient->patient->name }}</td>
                             <td>dr. {{ $patient->doctor->name }}</td>
-                            <td>{{ $patient->status }}</td>
+                            <td>
+                                @if ($patient->status == 'Waiting')
+                                <span class="badge bg-warning text-dark">Waiting</span>
+                                @elseif ($patient->status == 'In Progress')
+                                <span class="badge bg-primary">In Progress</span>
+                                @elseif ($patient->status == 'Completed')
+                                <span class="badge bg-success">Completed</span>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <a href="{{ url('/queue') }}" class="btn btn-secondary mt-4">Lihat Antrian</a>
     </div>
 
     <script>
